@@ -9,17 +9,12 @@ function DurationFomatter(seconds) {
   let result = "";
 
   for (var i = 0; i < times.length; i++) {
-    // 뒤에서 부터 s 찾은뒤 자르기
+    // 뒤에서 부터 s 찾은뒤 자르기, index 처음부터 s 전 까지, index s 이후부터 끝까지
     const findLastS = times[i][1].lastIndexOf("s");
-
-    // index 처음부터 s 전 까지
     const firstText = times[i][1].substring(0, findLastS);
-
-    // index s 이후부터 끝까지
     const lastText = times[i][1].substring(findLastS + 1, times[i][1].length);
-
+    // 값이 1이면 s는 잘라주기
     if (times[i][0] === 0) continue;
-    // 값이 1이면 s는 잘라주고 아니면 붙혀서 리턴
     result +=
       " " +
       times[i][0] +
