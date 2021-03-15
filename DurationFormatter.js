@@ -9,11 +9,10 @@ function DurationFomatter(seconds) {
   let result = "";
 
   for (var i = 0; i < times.length; i++) {
-    // 뒤에서 부터 s 찾은뒤 자르기, index 처음부터 s 전 까지, index s 이후부터 끝까지
     const findLastS = times[i][1].lastIndexOf("s");
     const firstText = times[i][1].substring(0, findLastS);
     const lastText = times[i][1].substring(findLastS + 1, times[i][1].length);
-    // 값이 1이면 s는 잘라주기
+
     if (times[i][0] === 0) continue;
     result +=
       " " +
@@ -21,16 +20,10 @@ function DurationFomatter(seconds) {
       " " +
       (times[i][0] === 1 ? firstText + lastText : times[i][1]);
   }
-  // 0s 일경우 now리턴
+
   if (result == "") return "now";
-
-  // hours 이후 분과 초가 없으면 , 없애기
   if (!times[3][0] && !times[4][0]) return result.replace(",", "").trim();
-
-  // 초가 없으면 and 없애기
   if (!times[4][0]) return result.replace(" and", "").trim();
 
   return result.trim();
 }
-
-console.log(DurationFomatter(366666));
